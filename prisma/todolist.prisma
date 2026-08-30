@@ -1,0 +1,13 @@
+enum TaskStatus {
+  COMPLETED
+  NOT_COMPLETED
+}
+
+model ToDoList {
+  id     Int        @id @default(autoincrement())
+  task   String
+  status TaskStatus @default(NOT_COMPLETED)
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+}
