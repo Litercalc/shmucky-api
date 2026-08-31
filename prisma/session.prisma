@@ -1,0 +1,8 @@
+model Session {
+  id                 String   @id @default(cuid())
+  sessionToken       String   @unique
+  sessionTokenExpiry DateTime
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
