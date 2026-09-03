@@ -8,6 +8,5 @@ model User {
   createdAt DateTime @default(now())
 
   toDoLists      ToDoList[]
-  savedPasswords SavedPassword[]
   sessions       Session[]
 }
