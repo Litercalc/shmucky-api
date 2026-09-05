@@ -1,14 +1,12 @@
-import userList from "../../utils/socket-user-id-pairs.js"
+import userList from "../../utils/socket-id-username-pairs.js"
 
-export function messageHandler(io, socket) {
+export function connectionHandler(io, socket) {
 
-    socket.on("send-message", (selfUsername, recipientUsername, message) => {
-        const recipientSocketId = userList[recipientUsername]
-        const recipientSocket = io.sockets.sockets.get(recipientSocketId)
-        const roomId = [selfUsername, recipientUsername].sort().join("-")
+    userList[socket.user.username] = socket.id
+    console.log(`${socket.user.username} has connected`)
 
-        socket.join(roomId)
-        recipientSocket.join(roomId)
-        socket.to(roomId).emit('recieve-message', message)
+    socket.on("disconnect", () => {
+        delete userList[socket.user.username]
+        console.log(`${Object.keys(userList).find(key => userList[key] === socket.id)} has disconnected`)
     })
 }

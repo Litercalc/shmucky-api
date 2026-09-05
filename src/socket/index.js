@@ -1,12 +1,18 @@
 import { Server } from "socket.io"
+import { socketValidateToken } from "../middlewares/index.js"
+import { messageHandler } from "./handlers/message.handler.js"
+import { connectionHandler } from "./handlers/connection.handler.js"
 
 export function initServer(server) {
     const io = new Server(server, {
-        cors: process.env.ORIGIN
+        cors: {origin: process.env.ORIGIN}
     })
 
+    io.use(socketValidateToken)
+
     io.on('connection', socket => {
-        console.log(socket.id)
+        connectionHandler(io, socket)
+        messageHandler(io, socket)
     })
 
     return io
