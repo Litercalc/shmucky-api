@@ -1,0 +1,1 @@
+export {default as increasePetScoreService} from "./increase-pet-score.service.js"

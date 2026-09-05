@@ -1,5 +1,5 @@
 
-import validateToken from "./token-validator.middleware.js"
+import validateToken from "../token-validator.middleware.js"
 
 const socketValidateToken = async function(socket ,next) {
     try {

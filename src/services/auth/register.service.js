@@ -32,5 +32,12 @@ export default async function registerUserService(username, password) {
         }
     })
 
+    await prisma.pet.create({
+        data: {
+            userId: user.id,
+            utilLockedUntil: null
+        }
+    })
+
     return token
 }

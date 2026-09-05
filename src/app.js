@@ -22,5 +22,9 @@ import todoListRouter from "./routes/todolist.routes.js"
 
 app.use("/api/v1/todolist", todoListRouter)
 
+import petRouter from "./routes/pet.routes.js"
+
+app.use("/api/v1/pet", petRouter)
+
 
 export default app

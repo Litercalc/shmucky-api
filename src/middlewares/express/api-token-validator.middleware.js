@@ -1,5 +1,5 @@
 
-import validateToken from "./token-validator.middleware.js"
+import validateToken from "../token-validator.middleware.js"
 
 const apiValidateToken = async function(req,res,next) {
     try {

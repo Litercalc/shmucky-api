@@ -1,6 +1,7 @@
 model Pet {
     id String  @id @default(cuid())
     petScore Int @default(0)
+    utilLockedUntil DateTime?
 
     userId String @unique
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
