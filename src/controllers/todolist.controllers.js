@@ -14,9 +14,9 @@ export const addTask = asyncHandler(async(req,res) => {
 export const editTask = asyncHandler(async(req,res) => {
     const userId = req.user.id
     const taskId = req.params.taskId
-    const {newTask} = req.body
+    const {task} = req.body
     
-    const editedTask = await editTaskService(userId, taskId, newTask)
+    const editedTask = await editTaskService(userId, taskId, task)
 
     res.status(200).json(new ApiResponse(200, "Edited task", editedTask))
 })

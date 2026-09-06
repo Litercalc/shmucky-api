@@ -11,6 +11,8 @@ const validate = (req, res, next) => {
         errors.array().map((err) => allErrors.push({
             [err.path]: err.msg,
         }))
+
+        console.log(allErrors)
         throw new ApiError(422, "Recieved data is not valid", allErrors)
     }
 

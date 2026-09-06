@@ -30,5 +30,12 @@ import adminRouter from "./routes/admin.routes.js"
 
 app.use("/api/v1/admin", adminRouter)
 
+app.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).json({
+    message: err.message,
+    errors: err.errors 
+  })
+})
+
 
 export default app
