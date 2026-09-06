@@ -1,7 +1,7 @@
 import { Server } from "socket.io"
-import { socketValidateToken } from "../middlewares/index.js"
 import { messageHandler } from "./handlers/message.handler.js"
 import { connectionHandler } from "./handlers/connection.handler.js"
+import { socketValidateToken } from "../middlewares/index.js"
 
 export function initServer(server) {
     const io = new Server(server, {

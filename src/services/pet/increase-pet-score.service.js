@@ -12,7 +12,6 @@ async function increaseScore(increaseAmount, userId, pet) {
             },
             data: {
                 petScore: pet.petScore + increaseAmount,
-                utilLockedUntil: increaseAmount === 10 ? new Date(Date.now() + (1000*60*10)) : null
             }
         })
 }

@@ -26,5 +26,9 @@ import petRouter from "./routes/pet.routes.js"
 
 app.use("/api/v1/pet", petRouter)
 
+import adminRouter from "./routes/admin.routes.js"
+
+app.use("/api/v1/admin", adminRouter)
+
 
 export default app

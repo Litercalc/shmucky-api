@@ -25,15 +25,21 @@ const validateToken = async function(authToken, req, next) {
         return next(new ApiError(401, "Session token has expired"))
     }
 
-    req.user = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
         select: {
             username: true,
-            id: true
+            id: true,
+            role: true,
+            isBanned: true
         },
         where: {
             id: sessionToken.userId
         }
     })
+
+    if(user.isBanned === true) return next(new ApiError(401, "User is banned"))
+
+    req.user = user
 
     next()
 }

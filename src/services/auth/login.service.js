@@ -27,5 +27,6 @@ export default async function loginUserService(username, password) {
         }
     })
     
-    return token
+    
+    return {token, user: [user.id, user.username, user.role]}
 }

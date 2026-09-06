@@ -5,19 +5,21 @@ export function messageHandler(io, socket) {
     socket.on("send-message", (recipientUsername, message) => {
         const selfUsername = socket.user.username
         const recipientSocketId = userList[recipientUsername]
-        const recipientSocket = io.sockets.sockets.get(recipientSocketId)
 
-        if (!recipientSocket) {
+        if (!recipientSocketId) {
             socket.emit('error', {success: false, reason: "recipient does not exist"})
             return
         }
         const roomId = [selfUsername, recipientUsername].sort().join("-")
 
-        console.log(roomId)
-
         socket.join(roomId)
-        recipientSocket.join(roomId)
+
+        for (let client of recipientSocketId) {
+            const recipientSocket = io.sockets.sockets.get(client)
+            recipientSocket.join(roomId)
+        }
+
         socket.to(roomId).emit('recieve-message', message)
-        console.log("message")
+        io.socketsLeave(roomId)
     })
 }

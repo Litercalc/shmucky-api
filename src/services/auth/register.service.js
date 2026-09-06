@@ -19,6 +19,11 @@ export default async function registerUserService(username, password) {
         data: {
             password: hashedPassword,
             username
+        },
+         select: {
+            username: true,
+            id: true,
+            role: true
         }
     })
 
@@ -35,9 +40,8 @@ export default async function registerUserService(username, password) {
     await prisma.pet.create({
         data: {
             userId: user.id,
-            utilLockedUntil: null
         }
     })
 
-    return token
+    return {token, user: [user.id, user.username, user.role]}
 }
