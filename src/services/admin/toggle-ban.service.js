@@ -1,10 +1,10 @@
 import ApiError from "../../utils/api-error.js"
 import {prisma} from "../../db/index.js"
 
-async function toggleBanService(username) {
+async function toggleBanService(id) {
     const user = await prisma.user.findUnique({
         where: {
-            username
+            id
         }
     })
 

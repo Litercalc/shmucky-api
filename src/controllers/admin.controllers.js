@@ -12,9 +12,9 @@ export const getStats = asyncHandler(async(req,res) => {
 })
 
 export const toggleBan = asyncHandler(async(req,res) => {
-    const username = req.params.username
+    const id = req.params.id
 
-    const userStats = await toggleBanService(username)
+    const userStats = await toggleBanService(id)
 
     res.status(200).json(new ApiResponse(200, "Updated isBanned of user", userStats))
 })

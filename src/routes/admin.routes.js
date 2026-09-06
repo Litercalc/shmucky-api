@@ -7,6 +7,6 @@ import {apiValidateToken, apiValidateRole, validator} from "../middlewares/index
 router.use(apiValidateToken, apiValidateRole, validator)
 
 router.get("/:username", getStats)
-router.patch("/:username/toggle-ban", toggleBan)
+router.patch("/:id/toggle-ban", toggleBan)
 
 export default router
