@@ -4,9 +4,16 @@ export default function usernamePasswordValidator() {
     return [
         body("username")
             .trim()
-            .isLength({min: 3, max: 15})
-            .withMessage("Username must be between 3 and 15 characters long"),
+            .notEmpty()
+            .withMessage("Username is required")
+            .isLength({min: 3})
+            .withMessage("Username is too short")
+            .isLength({max: 15})
+            .withMessage("Username is too long"),
         body("password")
+            .trim()
+            .notEmpty()
+            .withMessage("Password is required")
             .isStrongPassword({
                 minLength: 8,
                 minNumbers: 1,
@@ -14,6 +21,6 @@ export default function usernamePasswordValidator() {
                 minLowercase: 1,
                 minSymbols: 1
             })
-            .withMessage("Password must be 8 characters long, and must contain 1 uppercase, 1 lowercase, 1 number, and 1 symbol")
+            .withMessage("Password is not secure")
     ]
 }
