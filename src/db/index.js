@@ -3,4 +3,6 @@ import { PrismaClient } from "../generated/prisma/client.js";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 
-export default prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient({ adapter });
+
+export default prisma
