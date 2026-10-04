@@ -1,6 +1,9 @@
 {
     "name": "shmuck-api",
     "version": "1.0.0",
+    "prisma": {
+        "schema": "./prisma"
+    },
     "description": "",
     "license": "ISC",
     "author": "Mark Luat",
