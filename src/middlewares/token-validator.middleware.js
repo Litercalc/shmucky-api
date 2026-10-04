@@ -1,5 +1,5 @@
 import ApiError from "../utils/api-error.js"
-import {prisma} from "../db/index.js"
+import prisma from "../db/index.js"
 
 const validateToken = async function(authToken, req, next) {
 

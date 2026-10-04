@@ -1,5 +1,5 @@
 import ApiError from "../../utils/api-error.js"
-import {prisma} from "../../db/index.js"
+import prisma from "../../db/index.js"
 
 async function getStatsService(username) {
     const user = await prisma.user.findUnique({

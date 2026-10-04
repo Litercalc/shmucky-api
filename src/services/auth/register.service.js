@@ -1,5 +1,5 @@
 import ApiError from "../../utils/api-error.js"
-import {prisma} from "../../db/index.js"
+import prisma from "../../db/index.js"
 import bcrypt from 'bcrypt'
 import generateSessionService from "./generate-session.service.js"
 import { text } from "express"

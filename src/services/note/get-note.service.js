@@ -1,4 +1,4 @@
-import { prisma } from "../../db/index.js";
+import prisma from "../../db/index.js";
 import ApiError from "../../utils/api-error.js";
 
 export default async function getNoteService(userId) {

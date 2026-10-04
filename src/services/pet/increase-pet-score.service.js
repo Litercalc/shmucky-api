@@ -1,5 +1,5 @@
 import ApiError from "../../utils/api-error.js"
-import {prisma} from "../../db/index.js"
+import prisma from "../../db/index.js"
 
 async function increaseScore(increaseAmount, userId, pet) {
     return await prisma.pet.update({
