@@ -1,0 +1,11 @@
+node_modules/
+.env
+.git
+.gitignore
+.github/
+
+# Block Windows binaries while allowing the base directory structure to align
+src/generated/prisma/runtime/
+src/generated/prisma/*.js
+src/generated/prisma/*.ts
+src/generated/prisma/*.wasm
