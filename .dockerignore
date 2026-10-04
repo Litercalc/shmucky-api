@@ -4,7 +4,6 @@ node_modules/
 .gitignore
 .github/
 
-# Block Windows binaries while allowing the base directory structure to align
 src/generated/prisma/runtime/
 src/generated/prisma/*.js
 src/generated/prisma/*.ts

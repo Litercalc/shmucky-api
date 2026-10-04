@@ -1,30 +1,27 @@
-# 1. Use the official Node.js 22 Alpine Linux image
-FROM node:22-alpine
-
-# 2. Set the working directory inside the container
+# ---- builder stage ----
+FROM node:22-alpine AS builder
 WORKDIR /usr/src/app
 
-# 3. Copy package description files
 COPY package*.json ./
+RUN npm install              # includes `prisma` devDependency, needed for prisma.config.js to resolve
 
-# 4. Install production dependencies 
-RUN npm install --omit=dev
-
-# 5. Copy your Prisma schema folder so Docker can see it
+COPY prisma.config.js ./
 COPY prisma ./prisma/
-
-# 6. Generate the Prisma Client inside the container for Linux
 RUN npx prisma generate
 
-# 7. Copy the remaining backend source code files
+# ---- runtime stage ----
+FROM node:22-alpine
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install --omit=dev
+
+COPY --from=builder /usr/src/app/src/generated/prisma ./src/generated/prisma
 COPY . .
 
-# 8. Set production environment configurations
 ENV NODE_ENV=production
 ENV PORT=8080
 
-# 9. Expose the server port
 EXPOSE 8080
 
-# 10. Command to start your application
 CMD [ "npm", "start" ]
