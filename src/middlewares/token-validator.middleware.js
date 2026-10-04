@@ -40,6 +40,7 @@ const validateToken = async function(authToken, req, next) {
     if(user.isBanned === true) return next(new ApiError(401, "User is banned"))
 
     req.user = user
+    req.token = sessionToken.sessionToken
 
     next()
 }

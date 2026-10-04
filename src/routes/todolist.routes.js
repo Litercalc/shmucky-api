@@ -11,6 +11,6 @@ router.post("/", taskValidator(), validator, addTask)
 router.patch("/:taskId", taskValidator(), validator, editTask)
 router.delete("/:taskId", deleteTask)
 router.get("/", getTasks)
-router.patch("/:taskId/toggle-status", toggleTaskStatus)
+router.patch("/:taskId/:newStatus/toggle-status", toggleTaskStatus)
 
 export default router

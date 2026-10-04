@@ -1,6 +1,6 @@
-model Pet {
-  id       String @id @default(cuid())
-  petScore Int    @default(0)
+model Note {
+  id   String @id @default(cuid())
+  text Json?
 
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

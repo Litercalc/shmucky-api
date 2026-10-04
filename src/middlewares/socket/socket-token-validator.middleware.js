@@ -4,6 +4,7 @@ import validateToken from "../token-validator.middleware.js"
 const socketValidateToken = async function(socket ,next) {
     try {
         const authToken =`Bearer ${socket.handshake.auth.token}`
+        console.log(socket.handshake)
         await validateToken(authToken, socket, next)
 
     } catch (error) {

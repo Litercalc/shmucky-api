@@ -1,7 +1,7 @@
 import ApiError from "../../utils/api-error.js"
 import {prisma} from "../../db/index.js"
 
-export default async function toggleTaskStatusService(userId, taskId) {
+export default async function toggleTaskStatusService(userId, taskId, newTaskStatus) {
     
     const task = await prisma.toDoList.findUnique({
         where: {
@@ -18,7 +18,7 @@ export default async function toggleTaskStatusService(userId, taskId) {
             id: task.id
         },
         data: {
-            status: task.status === "NOT_COMPLETED" ? "COMPLETED" : "NOT_COMPLETED"
+            status: newTaskStatus
         }
     })
 

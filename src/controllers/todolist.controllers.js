@@ -43,8 +43,9 @@ export const getTasks = asyncHandler(async(req,res) => {
 export const toggleTaskStatus = asyncHandler(async(req,res) => {
     const userId = req.user.id
     const taskId = req.params.taskId
+    const newTaskStatus = req.params.newStatus
 
-    const editedTask = await toggleTaskStatusService(userId, taskId)
+    const editedTask = await toggleTaskStatusService(userId, taskId, newTaskStatus)
 
     res.status(200).json(new ApiResponse(200, "Updated task status", editedTask))
     

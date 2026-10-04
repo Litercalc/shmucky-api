@@ -11,6 +11,8 @@ export default async function loginUserService(username, password) {
         }
     })
 
+    console.log(user)
+
     if (!user) throw new ApiError(404, "User not found")
 
     const passwordMatch = await  bcrypt.compare(password, user.password)

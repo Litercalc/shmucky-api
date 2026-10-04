@@ -5,7 +5,6 @@ async function increaseScore(increaseAmount, userId, pet) {
     return await prisma.pet.update({
             select: {
                 petScore: true,
-                utilLockedUntil: true
             },
             where: {
                 userId

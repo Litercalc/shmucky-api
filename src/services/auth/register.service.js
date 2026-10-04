@@ -2,6 +2,7 @@ import ApiError from "../../utils/api-error.js"
 import {prisma} from "../../db/index.js"
 import bcrypt from 'bcrypt'
 import generateSessionService from "./generate-session.service.js"
+import { text } from "express"
 
 export default async function registerUserService(username, password) {
 
@@ -40,6 +41,20 @@ export default async function registerUserService(username, password) {
     await prisma.pet.create({
         data: {
             userId: user.id,
+        }
+    })
+
+    await prisma.note.create({
+        data: {
+            userId: user.id,
+            text: {
+                "type": "doc",
+                "content": [
+                    {
+                    "type": "paragraph"
+                    }
+                ]
+            }
         }
     })
 

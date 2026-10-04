@@ -25,7 +25,8 @@ export function messageHandler(io, socket) {
             recipientSocket.join(roomId)
         }
 
-        socket.to(roomId).emit('recieve-message', message)
+        socket.to(roomId).emit('recieve-message', `From ${selfUsername}: ${message}`)
+        console.log("sent")
         io.socketsLeave(roomId)
     })
 }

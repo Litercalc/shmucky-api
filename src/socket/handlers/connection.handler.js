@@ -14,7 +14,6 @@ export function connectionHandler(io, socket) {
             delete userList[socket.user.username]
         } else {
             userList[socket.user.username].delete(socket.id)
-        }
-        console.log(`${Object.keys(userList).find(key => userList[key] === socket.id)} has disconnected`)
+        }console.log(userList)
     })
 }
